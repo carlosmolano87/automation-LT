@@ -1,4 +1,5 @@
 package co.com.leantech.automation.swaglabs.stepdefinitions;
+import co.com.leantech.automation.swaglabs.questions.SelectedProductName;
 import co.com.leantech.automation.swaglabs.tasks.PurchaseOrder;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -8,9 +9,10 @@ import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Managed;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class PurchaseOrderStepDefinitions {
 
@@ -31,6 +33,11 @@ public class PurchaseOrderStepDefinitions {
     @When("^user create a checkout order$")
     public void userCreateACheckoutOrder() {
         theActorInTheSpotlight().attemptsTo(PurchaseOrder.makeinformation());
+        theActorInTheSpotlight().
+                should(
+                seeThat(
+                        "Nombre de Producto", SelectedProductName.NombreProductoSeleccionado()
+                ,equalTo("Sauce Labs Bolt T-Shirt")));
     }
 
     @Then("^user sees registered order$")
