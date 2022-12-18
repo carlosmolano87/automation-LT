@@ -23,14 +23,10 @@ public class Checkout implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(ShopingCart.CHECKOUT_BUTTON),
-                Click.on(CheckoutInfo.FIRST_NAME),
                 SendKeys.of("carlos").into(CheckoutInfo.FIRST_NAME),
-                Click.on(CheckoutInfo.LAST_NAME),
-                SendKeys.of("carlos").into(CheckoutInfo.LAST_NAME),
-                Click.on(CheckoutInfo.POSTAL_CODE),
-                SendKeys.of("9001").into(CheckoutInfo.POSTAL_CODE)
-
-
+                SendKeys.of("molano").into(CheckoutInfo.LAST_NAME),
+                SendKeys.of("9001").into(CheckoutInfo.POSTAL_CODE),
+                Click.on(CheckoutInfo.CONTINUE)
         );
     }
 
