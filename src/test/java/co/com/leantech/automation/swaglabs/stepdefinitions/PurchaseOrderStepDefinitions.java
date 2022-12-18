@@ -1,5 +1,6 @@
 package co.com.leantech.automation.swaglabs.stepdefinitions;
 import co.com.leantech.automation.swaglabs.questions.SelectedProductName;
+import co.com.leantech.automation.swaglabs.tasks.Checkout;
 import co.com.leantech.automation.swaglabs.tasks.PurchaseOrder;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -38,6 +39,7 @@ public class PurchaseOrderStepDefinitions {
                 seeThat(
                         "Nombre de Producto", SelectedProductName.NombreProductoSeleccionado()
                 ,equalTo("Sauce Labs Bolt T-Shirt")));
+        theActorInTheSpotlight().attemptsTo(Checkout.checkoutorder());
     }
 
     @Then("^user sees registered order$")

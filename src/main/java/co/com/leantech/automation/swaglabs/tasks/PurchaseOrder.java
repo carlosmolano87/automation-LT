@@ -31,8 +31,6 @@ public class PurchaseOrder implements Task {
                 Click.on(Login.LOGIN),
                 Click.on(Products.ADDTOCART),
                 Click.on(Products.SHOPPINGCART)
-                //driver.findElement(By.xpath("//a[@id=\"item_1_title_link\"]/div"))
-                //div[@id=\"shopping_cart_container\"]"
 
         );
     }
