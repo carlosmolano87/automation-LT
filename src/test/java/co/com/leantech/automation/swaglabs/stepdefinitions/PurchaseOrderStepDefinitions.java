@@ -1,6 +1,7 @@
 package co.com.leantech.automation.swaglabs.stepdefinitions;
-import co.com.leantech.automation.swaglabs.questions.SelectedProductName;
+import co.com.leantech.automation.swaglabs.questions.SelectedProductNameQuestions;
 import co.com.leantech.automation.swaglabs.tasks.Checkout;
+import co.com.leantech.automation.swaglabs.tasks.FinishOrder;
 import co.com.leantech.automation.swaglabs.tasks.PurchaseOrder;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -14,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
+import co.com.leantech.automation.swaglabs.questions.FinishOrderQuestions;
 
 public class PurchaseOrderStepDefinitions {
 
@@ -37,9 +39,20 @@ public class PurchaseOrderStepDefinitions {
         theActorInTheSpotlight().
                 should(
                 seeThat(
-                        "Nombre de Producto", SelectedProductName.NombreProductoSeleccionado()
+                        "Product Name", SelectedProductNameQuestions.SelectedProductNameShopingCart()
                 ,equalTo("Sauce Labs Bolt T-Shirt")));
         theActorInTheSpotlight().attemptsTo(Checkout.checkoutorder());
+        theActorInTheSpotlight().
+                should(
+                        seeThat(
+                                "Product Name", SelectedProductNameQuestions.SelectedProductNameCheckoutOverview()
+                                ,equalTo("Sauce Labs Bolt T-Shirt")));
+        theActorInTheSpotlight().attemptsTo(FinishOrder.finishOrder());
+        theActorInTheSpotlight().
+                should(
+                        seeThat(
+                                "Finish Message", FinishOrderQuestions.FinishOrderTittle()
+                                ,equalTo("Checkout: Complete!")));
     }
 
     @Then("^user sees registered order$")
